@@ -1,3 +1,10 @@
+/*     NOME:        ANTONIO CARLOS NETO 
+ *     EMPRESA:     LANDIX                              
+ *     DESCRICAO:
+ *                  CLASSE QUE COMUNICA O BANCO DE DADOS COM
+ *                  O NETBEANS. CLASSE VENDEDORES E TABELA VENDEDORES. 
+ */
+
 package model.dao;
 
 import connection.ConnectionFactory;
@@ -10,12 +17,18 @@ import java.util.List;
 import model.ldxps.Vendedores;
 
 public class VendedoresDAO {
+    /********************************************DECLARAÇÃO DE ATRIBUTOS DA CLASSE******************************************************/
+    //Objeto que carrega a conecção com o DB
     private Connection c = null;
-
+    /***********************************************************************************************************************************/
+    
+    /**************************************************MÉTODO CONSTRUTOR DA CLASSE******************************************************/
     public VendedoresDAO() {
         this.c = ConnectionFactory.getConnection();
     }
+    /***********************************************************************************************************************************/
     
+    /********************************MÉTODO QUE INSERE UM REGISTRO NA TABELA VENDEDORES*************************************************/
     public boolean insert(Vendedores vendedor){
         
         String sql = "INSERT INTO VENDEDORES (CDVEND, DSNOME, CDTAB, DTNASC) VALUES (?,?,?,?)";
@@ -37,7 +50,9 @@ public class VendedoresDAO {
         }
  
     }
-  
+    /***********************************************************************************************************************************/
+    
+    /********************************MÉTODO QUE BUSCA TODOS REGISTROS NA TABELA VENDEDORES**********************************************/
     public List<Vendedores> findAll(){
         
         String sql = "SELECT * FROM VENDEDORES";
@@ -68,10 +83,11 @@ public class VendedoresDAO {
         }finally{
             ConnectionFactory.closeConnection(c,s,r);
         }
-        
         return vendedores;
     }
+    /***********************************************************************************************************************************/
     
+    /********************************MÉTODO QUE ATUALIZA UM REGISTRO NA TABELA VENDEDORES***********************************************/
     public boolean update(Vendedores vendedor){
         
         String sql = "UPDATE VENDEDORES SET CDVEND = ?, DSNOME = ?, CDTAB = ?, DTNASC = ? WHERE CDVEND = ?";
@@ -92,9 +108,10 @@ public class VendedoresDAO {
         }finally{
             ConnectionFactory.closeConnection(c, s);
         }
- 
     }
+    /***********************************************************************************************************************************/
     
+    /********************************MÉTODO QUE DELETA UM REGISTRO NA TABELA VENDEDORES*************************************************/
     public boolean delete(String cod){
         
         String sql2 = "UPDATE CLIENTES SET CDVEND = null WHERE CDVEND = ?";
@@ -116,6 +133,6 @@ public class VendedoresDAO {
         }finally{
             ConnectionFactory.closeConnection(c, s);
         }
- 
     }
+    /***********************************************************************************************************************************/
 }
