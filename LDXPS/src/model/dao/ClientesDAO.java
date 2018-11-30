@@ -29,7 +29,7 @@ public class ClientesDAO {
             s.setString(2, cliente.getDsnome());
             s.setString(3, cliente.getIdtipo());
             s.setString(4, cliente.getVendedor().getCdvend());
-            s.setFloat(5, cliente.getDslim());
+            s.setDouble(5, cliente.getDslim());
             s.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -83,7 +83,7 @@ public class ClientesDAO {
         return clientes;
     }
     
-    public boolean update(Clientes cliente, String cod){
+    public boolean update(Clientes cliente){
         
         String sql = "UPDATE CLIENTES SET CDCL = ?, DSNOME = ?, IDTIPO = ?, CDVEND = ?, DSLIM = ? WHERE CDCL = ?";
         PreparedStatement s = null;
@@ -94,8 +94,8 @@ public class ClientesDAO {
             s.setString(2, cliente.getDsnome());
             s.setString(3, cliente.getIdtipo());
             s.setString(4, cliente.getVendedor().getCdvend());
-            s.setFloat(5, cliente.getDslim());
-            s.setString(6, cod);
+            s.setDouble(5, cliente.getDslim());
+            s.setString(6, cliente.getCdcl());
             s.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -127,5 +127,45 @@ public class ClientesDAO {
  
     }
     
-    
+    public List<Clientes> findClients(String cd){
+        
+        String sql = "SELECT C.CDCL, C.DSNOME AS NOME, C.IDTIPO, C.CDVEND, C.DSLIM, V.DSNOME, V.CDTAB, V.DTNASC FROM VENDEDORES V, CLIENTES C WHERE C.CDVEND = V.CDVEND and C.CDVEND = (?);";
+        
+        PreparedStatement s = null;
+        ResultSet r = null;
+        
+        List<Clientes> clientes = new ArrayList<>();
+        
+        try {
+            s = c.prepareStatement(sql);
+            s.setString(1, cd);
+            r = s.executeQuery();
+            while(r.next()){
+                
+                Clientes cliente = new Clientes();
+                cliente.setCdcl(r.getString("CDCL"));
+                cliente.setDsnome(r.getString("NOME"));
+                cliente.setIdtipo(r.getString("IDTIPO"));
+                cliente.setDslim(r.getInt("DSLIM"));
+                
+                Vendedores vendedor = new Vendedores();
+                vendedor.setCdvend(r.getString("CDVEND"));
+                vendedor.setDsnome(r.getString("DSNOME"));
+                vendedor.setCdtab(r.getInt("CDTAB"));
+                vendedor.setDtnasc(r.getString("DTNASC"));
+                
+                cliente.setVendedor(vendedor);
+                
+                clientes.add(cliente);
+            }
+            
+        } catch (SQLException ex) {
+            System.err.println("Error: "+ex);
+            
+        }finally{
+            ConnectionFactory.closeConnection(c,s,r);
+        }
+        
+        return clientes;
+    }
 }

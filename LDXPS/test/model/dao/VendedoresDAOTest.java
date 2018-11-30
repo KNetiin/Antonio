@@ -50,7 +50,7 @@ public class VendedoresDAOTest {
         Vendedores v = new Vendedores("second3", "Carlos", 1, "01/01/01");
         VendedoresDAO dao = new VendedoresDAO();
         
-        if(dao.update(v,"second2")){
+        if(dao.update(v)){
             System.out.println("Salvo com sucesso!");
         }else{
             fail("Erro ao atualizar vendedores");

@@ -4,14 +4,14 @@ public class Clientes {
     private String cdcl; //Código do cliente
     private String dsnome; //Nome do cliente
     private String idtipo; //Tipo de pessoa, ’PF’ - Pessoa física; ’PJ’ - Pessoa jurídica.
-    private float dslim; //Limite de crédito
+    private double dslim; //Limite de crédito
     private Vendedores vendedor;
    
     public Clientes(){
         
     }
    
-    public Clientes(String cdcl, String dsnome, String idtipo, float dslim, Vendedores vendedor) {
+    public Clientes(String cdcl, String dsnome, String idtipo, double dslim, Vendedores vendedor) {
         this.cdcl = cdcl;
         this.dsnome = dsnome;
         this.idtipo = idtipo;
@@ -39,7 +39,7 @@ public class Clientes {
         return idtipo;
     }
 
-    public float getDslim() {
+    public double getDslim() {
         return dslim;
     }
 
@@ -55,7 +55,7 @@ public class Clientes {
         this.idtipo = idtipo;
     }
 
-    public void setDslim(float dslim) {
+    public void setDslim(double dslim) {
         this.dslim = dslim;
     }
     

@@ -72,7 +72,7 @@ public class VendedoresDAO {
         return vendedores;
     }
     
-    public boolean update(Vendedores vendedor, String cod){
+    public boolean update(Vendedores vendedor){
         
         String sql = "UPDATE VENDEDORES SET CDVEND = ?, DSNOME = ?, CDTAB = ?, DTNASC = ? WHERE CDVEND = ?";
         PreparedStatement s = null;
@@ -83,7 +83,7 @@ public class VendedoresDAO {
             s.setString(2, vendedor.getDsnome());
             s.setInt(3, vendedor.getCdtab());
             s.setString(4, vendedor.getDtnasc());
-            s.setString(5, cod);
+            s.setString(5, vendedor.getCdvend());
             s.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -97,10 +97,15 @@ public class VendedoresDAO {
     
     public boolean delete(String cod){
         
+        String sql2 = "UPDATE CLIENTES SET CDVEND = null WHERE CDVEND = ?";
         String sql = "DELETE FROM VENDEDORES WHERE CDVEND = ?";
         PreparedStatement s = null;
         
         try {
+            s = c.prepareStatement(sql2);
+            s.setString(1, cod);
+            s.executeUpdate();
+            
             s = c.prepareStatement(sql);
             s.setString(1, cod);
             s.executeUpdate();
