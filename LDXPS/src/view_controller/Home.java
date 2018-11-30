@@ -33,6 +33,14 @@ public class Home extends javax.swing.JFrame {
             i++;
         }
         
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(new Object[]{"CDVEND", "DSNOME", "CDTAB", "DTNASC"});
+            
+        table.getModel().setValueAt("TODOS", i, 0);
+        table.getModel().setValueAt("TODOS", i, 1);
+        table.getModel().setValueAt("TODOS", i, 2);
+        table.getModel().setValueAt("TODOS", i, 3);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -221,9 +229,24 @@ public class Home extends javax.swing.JFrame {
         DefaultTableModel model1 = (DefaultTableModel) table2.getModel();
         model1.getDataVector().removeAllElements();
         model1.fireTableDataChanged();
-        
+                
         ClientesDAO dao = new ClientesDAO();
         int i = 0;
+        
+        if(cd.equals("TODOS")){
+            for(Clientes c: dao.findAll()){
+            
+            DefaultTableModel model = (DefaultTableModel) table2.getModel();
+            model.addRow(new Object[]{"CDCL", "DSNOME", "IDTIPO", "DSLIM"});
+            
+            table2.getModel().setValueAt(c.getCdcl(), i, 0);
+            table2.getModel().setValueAt(c.getDsnome(), i, 1);
+            table2.getModel().setValueAt(c.getIdtipo(), i, 2);
+            table2.getModel().setValueAt(c.getDslim(), i, 3);
+            i++;
+            }
+            return;
+        }
         for(Clientes c: dao.findClients(cd)){
             
             DefaultTableModel model = (DefaultTableModel) table2.getModel();

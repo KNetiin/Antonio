@@ -31,7 +31,7 @@ public class Cadastro_Cliente extends javax.swing.JFrame {
             table.getModel().setValueAt(v.getCdtab(), i, 2);
             table.getModel().setValueAt(v.getDtnasc(), i, 3);
             i++;
-        }
+        }            
         
     }
     

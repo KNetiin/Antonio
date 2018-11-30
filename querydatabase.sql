@@ -1,8 +1,8 @@
 -- DROP SCHEMA landix;
--- CREATE DATABASE landix DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE landix DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
--- CREATE USER 'java'@'localhost' IDENTIFIED WITH mysql_native_password BY 'toor';
--- GRANT ALL ON javabase.* TO 'java'@'localhost';
+CREATE USER 'java'@'localhost' IDENTIFIED WITH mysql_native_password BY 'toor';
+GRANT ALL ON javabase.* TO 'java'@'localhost';
 
 USE landix;
 
@@ -29,5 +29,3 @@ CREATE TABLE IF NOT EXISTS CLIENTES (
 -- select * from VENDEDORES;
 -- select * from CLIENTES;
 -- select * from VENDEDORES V, CLIENTES C where C.CDVEND = V.CDVEND;
--- INSERT INTO VENDEDORES VALUES ('firs3t2','Antoni2o',3,'2010-12-20');
--- INSERT INTO CLIENTES VALUES ('tl','PF','1','firs3t2',133.00);	
