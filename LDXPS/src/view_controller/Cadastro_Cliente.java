@@ -1,3 +1,8 @@
+/*     NOME:        ANTONIO CARLOS NETO 
+ *     EMPRESA:     LANDIX                              
+ *     DESCRICAO:
+ *                  A VIEW E CONTROLLER DA CLASSE CLIENTES. 
+ */
 package view_controller;
 
 import java.util.UUID;
@@ -9,9 +14,9 @@ import model.ldxps.Vendedores;
 
 
 public class Cadastro_Cliente extends javax.swing.JFrame {
-    String cod = null;
-    String cd = null;
-    int index = -1;
+    private String cod = null;
+    private String cd = null;
+    private int index = -1;
 
     public Cadastro_Cliente() {
         initComponents();

@@ -1,3 +1,8 @@
+/*     NOME:        ANTONIO CARLOS NETO 
+ *     EMPRESA:     LANDIX                              
+ *     DESCRICAO:
+ *                  A CLASSE RESPONSÁVEL POR FAZER TESTES. 
+ */
 package model.dao;
 
 import java.text.DateFormat;

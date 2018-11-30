@@ -1,3 +1,9 @@
+/*     NOME:        ANTONIO CARLOS NETO 
+ *     EMPRESA:     LANDIX                              
+ *     DESCRICAO:
+ *                  A VIEW E CONTROLLER DO GERENCIAMENTO DA CLASSE VENDEDORES. 
+ */
+
 package view_controller;
 
 import java.time.LocalDate;
